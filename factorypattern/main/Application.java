@@ -1,8 +1,13 @@
 package factorypattern.main;
 
-public class Application {
+public abstract class Application {
+    public static void main(String args[]) throws Exception {
+        
+        Application application = (Application)Class.forName("ApplicationFor" + args[0]).newInstance();
 
-    Long id;
+        Presentation presentation = application.createPresentation();
 
-    public static void main(String args[]) {}
+        presentation.doPresentation("test");
+    }
+    abstract public Presentation createPresentation();
 }
